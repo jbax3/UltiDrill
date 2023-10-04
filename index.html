@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jet Palette Drawing</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        canvas {
+            border: 1px solid black;
+            margin-top: 10px;
+            display: block;
+            margin: 20px auto;
+        }
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 34px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .slider.round {
+            border-radius: 34px;
+        }
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body class="container mt-4">
+    <div class="row">
+        <!-- Canvas Section -->
+        <div class="col-lg-9">
+            <canvas id="drawingCanvas" width="800" height="500"></canvas>
+        </div>
+        
+        <!-- Tools Section -->
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Indicate a Throw (violet):</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="dashed">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Place Orange Cone:</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="placeCone">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Place Disc:</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="placeDisc">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="form-group" style="width:100%">
+                <label for="smoothing">Smoothing factor:</label>
+                <input type="range" class="custom-range" min="1" max="50" value="50" id="smoothing">
+            </div>
+            <div class="form-group mt-2">
+                <button class="btn btn-secondary" id="undoButton">Undo</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
